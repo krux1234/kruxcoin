@@ -1,44 +1,293 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KruxCoin | India's First Decentralized Fund Crypto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KruxCoin</title>
   <style>
     body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: white;
+    }
+    header, footer {
+      background-color: #1a1a1a;
+      padding: 20px;
       text-align: center;
-      padding: 50px;
     }
-    h1 {
-      color: #58a6ff;
-      font-size: 3em;
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-    p {
-      font-size: 1.2em;
-      margin: 20px 0;
+    nav ul li {
+      margin: 10px;
     }
-    a {
-      color: #58a6ff;
+    nav ul li a {
+      color: #00ccff;
       text-decoration: none;
-      border: 2px solid #58a6ff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      transition: 0.3s;
+      font-weight: bold;
     }
-    a:hover {
-      background-color: #58a6ff;
-      color: #0d1117;
+    section {
+      padding: 30px 20px;
+      border-bottom: 1px solid #333;
+    }
+    h2 {
+      color: #00ccff;
+    }
+    input, button, select {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+    button {
+      background-color: #00ccff;
+      color: black;
+      font-weight: bold;
+      border: none;
+    }
+    .hidden {
+      display: none;
+    }
+    .center {
+      text-align: center;
+    }
+    .task {
+      background-color: #1e1e1e;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+    .referral-link {
+      word-break: break-word;
+      background: #1a1a1a;
+      padding: 10px;
+    }
+    #founderPhoto {
+      width: 150px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .tab {
+      display: flex;
+      justify-content: space-around;
+      background: #222;
+      color: white;
+      padding: 10px;
+    }
+    .tab button {
+      background: none;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>🚀 Welcome to KruxCoin!</h1>
-  <p>India's first decentralized fund management crypto coin.</p>
-  <p>Start your journey with <strong>KruxCoin</strong> today.</p>
-  <a href="mailto:krishverma3011@gmail.com">Contact Us</a>
+  <header>
+    <h1>🚀 KruxCoin</h1>
+    <p id="welcomeText">India's first decentralized fund management crypto coin.</p>
+  </header>
+
+  <div id="auth">
+    <section id="loginSection">
+      <h2 class="center">Login</h2>
+      <input type="text" id="loginID" placeholder="Enter Mobile or Gmail" required />
+      <input type="password" id="loginPassword" placeholder="Enter Password" required />
+      <button onclick="loginUser()">Login</button>
+      <p class="center">Don't have an account? <a href="#" onclick="showRegister()">Register Here</a></p>
+    </section>
+
+    <section id="registerSection" class="hidden">
+      <h2 class="center">Register</h2>
+      <input type="text" id="regName" placeholder="Full Name" required />
+      <input type="number" id="regAge" placeholder="Age" required />
+      <input type="text" id="regMobile" placeholder="Mobile Number" required />
+      <input type="email" id="regEmail" placeholder="Gmail" required />
+      <input type="password" id="regPassword" placeholder="Password" required />
+      <button onclick="registerUser()">Register</button>
+      <p class="center">Already have an account? <a href="#" onclick="showLogin()">Login Here</a></p>
+    </section>
+  </div>
+
+  <div id="mainContent" class="hidden">
+    <div class="tab">
+      <button onclick="location.href='#home'">Home</button>
+      <button onclick="location.href='#tasks'">Tasks</button>
+      <button onclick="location.href='#referral'">Referral</button>
+      <button onclick="location.href='#buy'">Buy</button>
+      <button onclick="location.href='#info'">Info</button>
+      <button onclick="location.href='#account'">Account</button>
+    </div>
+
+    <section id="home">
+      <h2>Welcome to KruxCoin 🚀</h2>
+      <p>💡 Buy coins, refer friends, complete tasks and earn commissions.</p>
+      <p>💰 1 KruxCoin = ₹0.10. Buy now for future profits.</p>
+    </section>
+
+    <section id="tasks">
+      <h2>📋 Daily Tasks</h2>
+      <div class="task">
+        <p>Refer 1 person → Earn 100 coins</p>
+        <button onclick="claimTask(1, 100)">Claim</button>
+      </div>
+      <div class="task">
+        <p>Refer 5 persons → Earn 500 coins</p>
+        <button onclick="claimTask(5, 500)">Claim</button>
+      </div>
+      <div class="task">
+        <p>Refer 10 persons → Earn 1000 coins</p>
+        <button onclick="claimTask(10, 1000)">Claim</button>
+      </div>
+    </section>
+
+    <section id="referral">
+      <h2>🎯 Referral Program</h2>
+      <p>Share your referral link and earn 50 coins per new user.</p>
+      <div class="referral-link" id="userReferralLink"></div>
+      <p>Total referrals: <span id="refCount">0</span></p>
+      <p>Coins earned: <span id="refCoins">0</span></p>
+    </section>
+
+    <section id="buy">
+      <h2>💳 Buy KruxCoins</h2>
+      <select id="amountSelect">
+        <option value="100">₹100</option>
+        <option value="200">₹200</option>
+        <option value="500">₹500</option>
+        <option value="1000">₹1000</option>
+        <option value="2000">₹2000</option>
+        <option value="5000">₹5000</option>
+      </select>
+      <p>Choose Payment:</p>
+      <button onclick="showQR('PhonePe')">Pay via PhonePe</button>
+      <button onclick="showQR('Paytm')">Pay via Paytm</button>
+      <div id="qrBox" class="center"></div>
+      <input type="text" placeholder="Enter UTR Number" />
+      <input type="file" />
+      <button>Submit Payment</button>
+    </section>
+
+    <section id="info">
+      <h2>ℹ️ KruxCoin Info</h2>
+      <img id="founderPhoto" src="founder.jpg" alt="Founder" />
+      <p><strong>Founder:</strong> Krish Verma, Age 16, Mairwa, Siwan, Bihar. Completed 12th in Commerce from MS College, Mairwa.</p>
+      <p>💎 KruxCoin is India's first crypto aiming to become a decentralized fund management company like BlackRock.</p>
+      <ul>
+        <li>Early investment = high profit potential.</li>
+        <li>Decentralized & community-powered.</li>
+        <li>Referral program earns you coins.</li>
+        <li>Earn coins through daily promotional tasks.</li>
+        <li>Future business model like BlackRock India.</li>
+        <li>Plans to launch mobile app after 10M users.</li>
+        <li>Will apply for government approval officially.</li>
+        <li>Gives youth opportunity to earn online.</li>
+        <li>Be part of India's first decentralized fund platform.</li>
+        <li>Secure and trusted by community.</li>
+      </ul>
+      <p><strong>💰 How you earn:</strong> Buy coins, refer friends, do promotion tasks (like reels/shorts), and earn free coins and commissions based on views and referrals.</p>
+    </section>
+
+    <section id="account">
+      <h2>👤 Your Account</h2>
+      <p>Name: <span id="accName"></span></p>
+      <p>Mobile: <span id="accMobile"></span></p>
+      <p>Email: <span id="accEmail"></span></p>
+      <p>Total Coins: <span id="accCoins">0</span></p>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 KruxCoin. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let currentUser;
+
+    function showRegister() {
+      document.getElementById("loginSection").classList.add("hidden");
+      document.getElementById("registerSection").classList.remove("hidden");
+    }
+
+    function showLogin() {
+      document.getElementById("registerSection").classList.add("hidden");
+      document.getElementById("loginSection").classList.remove("hidden");
+    }
+
+    function registerUser() {
+      const user = {
+        name: regName.value,
+        age: regAge.value,
+        mobile: regMobile.value,
+        email: regEmail.value,
+        password: regPassword.value,
+        coins: 0,
+        referrals: 0
+      };
+      localStorage.setItem(user.mobile, JSON.stringify(user));
+      alert("Registered! Now login.");
+      showLogin();
+    }
+
+    function loginUser() {
+      const id = loginID.value;
+      const pass = loginPassword.value;
+      const user = JSON.parse(localStorage.getItem(id));
+      if (user && user.password === pass) {
+        currentUser = user;
+        document.getElementById("auth").classList.add("hidden");
+        document.getElementById("mainContent").classList.remove("hidden");
+        welcomeText.innerText = `Welcome, ${user.name}!`;
+        accName.innerText = user.name;
+        accMobile.innerText = user.mobile;
+        accEmail.innerText = user.email;
+        accCoins.innerText = user.coins || 0;
+        userReferralLink.innerText = `${location.href}?ref=${user.mobile}`;
+        refCount.innerText = user.referrals || 0;
+        refCoins.innerText = (user.referrals || 0) * 50;
+      } else {
+        alert("Invalid login");
+      }
+    }
+
+    function claimTask(refsRequired, coins) {
+      if ((currentUser.referrals || 0) >= refsRequired) {
+        currentUser.coins = (currentUser.coins || 0) + coins;
+        alert(`You earned ${coins} coins!`);
+        localStorage.setItem(currentUser.mobile, JSON.stringify(currentUser));
+        accCoins.innerText = currentUser.coins;
+      } else {
+        alert(`You need ${refsRequired} referrals to claim this task.`);
+      }
+    }
+
+    function showQR(method) {
+      const imageSrc = method.toLowerCase() + ".png";
+      qrBox.innerHTML = `<h3>${method} QR</h3><img src="${imageSrc}" width="200"/>`;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const refId = urlParams.get('ref');
+    if (refId) {
+      const refUser = JSON.parse(localStorage.getItem(refId));
+      if (refUser) {
+        refUser.referrals = (refUser.referrals || 0) + 1;
+        localStorage.setItem(refId, JSON.stringify(refUser));
+      }
+    }
+  </script>
 </body>
-</html>
+</html> 
